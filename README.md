@@ -1,6 +1,18 @@
 # AutoDispose
 
-自动根据LifeCycle生命周期解绑RxJava订阅, 仅使用一个函数完成自动解绑
+<p>
+<a href="https://jitpack.io/#liangjingkanji/AutoDispose"><img src="https://jitpack.io/v/liangjingkanji/AutoDispose.svg"/></a>
+<img src="https://img.shields.io/badge/language-kotlin-orange.svg"/>
+<img src="https://img.shields.io/badge/license-Apache-blue"/>
+<a href="https://jq.qq.com/?_wv=1027&k=vWsXSNBJ"><img src="https://img.shields.io/badge/QQ群-752854893-blue"/></a>
+</p>
+
+自动解绑RxJava订阅
+<br>
+
+- 支持Activity/Fragment/ViewModel自动解绑
+- 仅使用一个函数完成自动解绑, 市面上最简单
+
 <br>
 
 ## 安装
@@ -20,7 +32,7 @@ allprojects {
 module of build.gradle
 
 ```groovy
-implementation 'com.github.liangjingkanji:autodispose:1.0'
+implementation 'com.github.liangjingkanji:autodispose:1.1.0'
 ```
 
 ## 使用
