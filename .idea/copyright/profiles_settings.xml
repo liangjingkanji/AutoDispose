@@ -1,7 +1,3 @@
 <component name="CopyrightManager">
-  <settings default="Umbrella">
-    <module2copyright>
-      <element module="Project Files" copyright="Umbrella" />
-    </module2copyright>
-  </settings>
+  <settings default="Drake" />
 </component>
