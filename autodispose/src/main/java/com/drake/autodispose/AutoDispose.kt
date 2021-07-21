@@ -19,6 +19,7 @@ package com.drake.autodispose
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import io.reactivex.Flowable
 import io.reactivex.Observable
 
 /**
@@ -38,6 +39,25 @@ fun <T> Observable<T>.auto(
             }
         })
     }, {})
+}
+
+/**
+ * 在LifecycleOwner的指定生命周期中取消订阅
+ *
+ * @param lifecycleOwner 一般为Activity或Fragment. 当然也可以自己实现LifecycleOwner
+ * @param event 指定生命周期, 默认为[Lifecycle.Event.ON_DESTROY]
+ */
+fun <T> Flowable<T>.auto(
+    lifecycleOwner: LifecycleOwner,
+    event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY
+): Flowable<T> {
+    return doOnLifecycle({
+        lifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
+            override fun onStateChanged(source: LifecycleOwner, actualEvent: Lifecycle.Event) {
+                if (event == actualEvent) it.cancel()
+            }
+        })
+    }, { }, { })
 }
 
 

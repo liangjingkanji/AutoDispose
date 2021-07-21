@@ -16,14 +16,26 @@
 
 package androidx.lifecycle
 
+import io.reactivex.Flowable
 import io.reactivex.Observable
+import java.io.Closeable
 
 /**
  * 在[ViewModel]被销毁时取消订阅
  */
 fun <T> Observable<T>.auto(viewModel: ViewModel): Observable<T> {
     return doOnLifecycle({ dispose ->
-        val rxCloseable = RxCloseable(dispose)
+        val rxCloseable = Closeable { dispose.dispose() }
         viewModel.setTagIfAbsent(rxCloseable.toString(), rxCloseable)
     }, {})
+}
+
+/**
+ * 在[ViewModel]被销毁时取消订阅
+ */
+fun <T> Flowable<T>.auto(viewModel: ViewModel): Flowable<T> {
+    return doOnLifecycle({
+        val rxCloseable = Closeable { it.cancel() }
+        viewModel.setTagIfAbsent(rxCloseable.toString(), rxCloseable)
+    }, {}, {})
 }
