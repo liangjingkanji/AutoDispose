@@ -32,7 +32,7 @@ allprojects {
 module of build.gradle
 
 ```groovy
-implementation 'com.github.liangjingkanji:autodispose:1.1.0'
+implementation 'com.github.liangjingkanji:autodispose:1.2.0'
 ```
 
 ## 使用
